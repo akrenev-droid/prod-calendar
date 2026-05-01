@@ -10,6 +10,12 @@
 https://akrenev-droid.github.io/prod-calendar/ru-production-calendar.ics
 ```
 
+Если iPhone не принимает основной файл, используйте максимально простой iOS-feed:
+
+```text
+https://akrenev-droid.github.io/prod-calendar/ru-production-calendar-ios.ics
+```
+
 На iPhone: Настройки → Календарь → Учетные записи → Добавить учетную запись → Другое → Подписка на календарь.
 
 ## Автообновление

@@ -7,9 +7,6 @@ import sys
 from pathlib import Path
 
 
-ICS_FILE = Path("ru-production-calendar.ics")
-
-
 def unfold(lines: list[str]) -> list[str]:
     result: list[str] = []
     for line in lines:
@@ -20,16 +17,16 @@ def unfold(lines: list[str]) -> list[str]:
     return result
 
 
-def main() -> int:
-    raw_bytes = ICS_FILE.read_bytes()
+def validate(path: Path) -> int:
+    raw_bytes = path.read_bytes()
     if not raw_bytes.endswith(b"\r\n") or b"\n" in raw_bytes.replace(b"\r\n", b""):
-        print("ICS must use CRLF line endings and end with CRLF", file=sys.stderr)
+        print(f"{path}: ICS must use CRLF line endings and end with CRLF", file=sys.stderr)
         return 1
 
     raw = raw_bytes.decode("utf-8")
     lines = unfold(raw.splitlines())
     if lines[0] != "BEGIN:VCALENDAR" or lines[-1] != "END:VCALENDAR":
-        print("ICS must start with BEGIN:VCALENDAR and end with END:VCALENDAR", file=sys.stderr)
+        print(f"{path}: ICS must start with BEGIN:VCALENDAR and end with END:VCALENDAR", file=sys.stderr)
         return 1
 
     stack: list[str] = []
@@ -59,8 +56,13 @@ def main() -> int:
         print("ICS has no events", file=sys.stderr)
         return 1
 
-    print(f"ICS OK: {event_count} events")
+    print(f"{path}: ICS OK: {event_count} events")
     return 0
+
+
+def main() -> int:
+    paths = [Path(arg) for arg in sys.argv[1:]] or [Path("ru-production-calendar.ics")]
+    return max(validate(path) for path in paths)
 
 
 if __name__ == "__main__":

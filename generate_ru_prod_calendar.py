@@ -25,7 +25,9 @@ from urllib.parse import quote
 
 DATA_FILE = Path("ru_prod_calendar_data.json")
 OUTPUT_FILE = Path("ru-production-calendar.ics")
+IOS_OUTPUT_FILE = Path("ru-production-calendar-ios.ics")
 CALENDAR_NAME = "Производственный календарь РФ"
+IOS_CALENDAR_NAME = "RU Production Calendar"
 UID_DOMAIN = "prod-calendar"
 
 MONTHS = {
@@ -92,6 +94,28 @@ def escape_ics_text(value: str) -> str:
         .replace("\r\n", "\\n")
         .replace("\n", "\\n")
     )
+
+
+def transliterate(value: str) -> str:
+    table = {
+        "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e",
+        "ё": "e", "ж": "zh", "з": "z", "и": "i", "й": "y", "к": "k",
+        "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r",
+        "с": "s", "т": "t", "у": "u", "ф": "f", "х": "h", "ц": "ts",
+        "ч": "ch", "ш": "sh", "щ": "sch", "ъ": "", "ы": "y", "ь": "",
+        "э": "e", "ю": "yu", "я": "ya",
+    }
+    result = []
+    for char in value:
+        lower = char.lower()
+        replacement = table.get(lower)
+        if replacement is None:
+            result.append(char if ord(char) < 128 else "")
+        elif char.isupper():
+            result.append(replacement.capitalize())
+        else:
+            result.append(replacement)
+    return "".join(result)
 
 
 def fold_ics_line(line: str) -> list[str]:
@@ -395,41 +419,73 @@ def event_title(kind: str, name: str) -> str:
     return f"Выходной: {name}"
 
 
-def generate() -> None:
+def ios_event_title(kind: str, name: str) -> str:
+    if kind == "short":
+        return "Short workday"
+    if name.lower().startswith("выходной: перенос"):
+        return "Day off: transferred"
+    return f"Day off: {transliterate(name)}"
+
+
+def generate_calendar(output_file: Path, *, ios_compatible: bool = False) -> None:
     data = load_data()
     now = "20260101T000000Z"
 
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Personal RU Production Calendar//RU",
+        (
+            "PRODID:-//Personal RU Production Calendar//IOS"
+            if ios_compatible
+            else "PRODID:-//Personal RU Production Calendar//RU"
+        ),
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
-        f"X-WR-CALNAME:{escape_ics_text(CALENDAR_NAME)}",
-        f"NAME:{escape_ics_text(CALENDAR_NAME)}",
-        "X-WR-TIMEZONE:Europe/Moscow",
-        "REFRESH-INTERVAL;VALUE=DURATION:P1D",
-        "X-PUBLISHED-TTL:PT24H",
     ]
+    if ios_compatible:
+        lines.append(f"X-WR-CALNAME:{IOS_CALENDAR_NAME}")
+    else:
+        lines.extend([
+            f"X-WR-CALNAME:{escape_ics_text(CALENDAR_NAME)}",
+            f"NAME:{escape_ics_text(CALENDAR_NAME)}",
+            "X-WR-TIMEZONE:Europe/Moscow",
+            "REFRESH-INTERVAL;VALUE=DURATION:P1D",
+            "X-PUBLISHED-TTL:PT24H",
+        ])
 
     for year, year_data in sorted(data.items()):
         for day, name in sorted(year_data.get("non_working_days", {}).items()):
+            title = (
+                ios_event_title("non_working", name)
+                if ios_compatible
+                else event_title("non_working", name)
+            )
             lines.extend(make_event(
                 day,
-                event_title("non_working", name),
+                title,
                 now,
             ))
 
         for day, name in sorted(year_data.get("short_days", {}).items()):
+            title = (
+                ios_event_title("short", name)
+                if ios_compatible
+                else event_title("short", name)
+            )
             lines.extend(make_event(
                 day,
-                event_title("short", name),
+                title,
                 now,
             ))
 
     lines.append("END:VCALENDAR")
-    OUTPUT_FILE.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
-    print(f"Готово: {OUTPUT_FILE.resolve()}")
+    output_file.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
+    print(f"Готово: {output_file.resolve()}")
+
+
+def generate() -> None:
+    generate_calendar(OUTPUT_FILE)
+    generate_calendar(IOS_OUTPUT_FILE, ios_compatible=True)
 
 
 def default_update_years() -> list[int]:

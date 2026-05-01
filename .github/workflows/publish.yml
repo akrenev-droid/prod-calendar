@@ -34,13 +34,13 @@ jobs:
         run: python generate_ru_prod_calendar.py --update
 
       - name: Validate calendar
-        run: python validate_ics.py
+        run: python validate_ics.py ru-production-calendar.ics ru-production-calendar-ios.ics
 
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ru_prod_calendar_data.json ru-production-calendar.ics
+          git add ru_prod_calendar_data.json ru-production-calendar.ics ru-production-calendar-ios.ics
           if ! git diff --cached --quiet; then
             git commit -m "Update production calendar"
             git push
@@ -50,6 +50,7 @@ jobs:
         run: |
           mkdir -p public
           cp ru-production-calendar.ics public/ru-production-calendar.ics
+          cp ru-production-calendar-ios.ics public/ru-production-calendar-ios.ics
           cp ru-production-calendar.ics public/index.ics
           cat > public/index.html <<'HTML'
           <!doctype html>
