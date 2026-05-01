@@ -441,13 +441,6 @@ def generate_calendar(output_file: Path) -> None:
                 now,
             ))
 
-        for day, name in sorted(year_data.get("short_days", {}).items()):
-            lines.extend(make_event(
-                day,
-                event_title("short", name),
-                now,
-            ))
-
     lines.append("END:VCALENDAR")
     output_file.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
     print(f"Готово: {output_file.resolve()}")
