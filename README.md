@@ -4,10 +4,10 @@
 
 ## Подписка
 
-После публикации через GitHub Pages используйте постоянную ссылку:
+Основная рабочая ссылка сейчас отдаётся через сервер Linecom:
 
 ```text
-https://akrenev-droid.github.io/prod_calendar/ru-production-calendar.ics
+https://team.linecom.pro/calendars/ru-production.ics
 ```
 
 На iPhone: Настройки → Календарь → Учетные записи → Добавить учетную запись → Другое → Подписка на календарь.
@@ -37,7 +37,7 @@ GitHub Actions запускается:
 2. обновляет `ru_prod_calendar_data.json`, если опубликовано новое постановление;
 3. пересобирает `ru-production-calendar.ics`;
 4. проверяет структуру `.ics`;
-5. публикует файл через GitHub Pages.
+5. публикует файл через GitHub Pages как резервный публичный источник.
 
 Если официальный сайт временно недоступен, workflow оставляет последние подтверждённые данные и всё равно публикует валидный календарь.
 
@@ -48,23 +48,10 @@ python3 generate_ru_prod_calendar.py --update
 python3 validate_ics.py
 ```
 
-## Cloudflare Worker
+## Публичный источник
 
-Если iPhone не принимает GitHub Pages, деплой отдельного Worker endpoint:
-
-```bash
-npx wrangler login
-npx wrangler deploy
-```
-
-Текущий Worker endpoint:
+GitHub Pages остаётся резервной публикацией и источником для Linecom:
 
 ```text
-https://ru-prod-calendar.a-krenev.workers.dev/calendar.ics
-```
-
-Рабочий календарь из Google Sheets `planner26`:
-
-```text
-https://planner26-calendar.a-krenev.workers.dev/calendar.ics
+https://akrenev-droid.github.io/prod_calendar/ru-production-calendar.ics
 ```
