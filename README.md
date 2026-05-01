@@ -7,7 +7,7 @@
 После публикации через GitHub Pages используйте постоянную ссылку:
 
 ```text
-https://akrenev-droid.github.io/prod_calendar/ru-production-calendar.ics
+https://akrenev-droid.github.io/prod-calendar/ru-production-calendar.ics
 ```
 
 На iPhone: Настройки → Календарь → Учетные записи → Добавить учетную запись → Другое → Подписка на календарь.

@@ -162,7 +162,7 @@ def request_text(url: str, timeout: int = 20) -> str:
             "--user-agent",
             (
                 "Mozilla/5.0 (compatible; ru-production-calendar/1.0; "
-                "+https://github.com/akrenev-droid/prod_calendar)"
+                "+https://github.com/akrenev-droid/prod-calendar)"
             ),
             url,
         ],
