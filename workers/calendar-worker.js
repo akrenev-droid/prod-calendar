@@ -1,5 +1,5 @@
 const UPSTREAM_URL =
-  "https://raw.githubusercontent.com/akrenev-droid/prod-calendar/main/ru-production-calendar.ics";
+  "https://raw.githubusercontent.com/akrenev-droid/prod_calendar/main/ru-production-calendar.ics";
 
 export default {
   async fetch(request) {
