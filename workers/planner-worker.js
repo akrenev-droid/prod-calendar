@@ -117,22 +117,8 @@ function event(lines, { uid, start, end, summary, description }) {
   lines.push("END:VEVENT");
 }
 
-function dayStatusTitle(code) {
-  if (code === "0") return "Рабочий день";
-  if (code === "1") return "Выходной";
-  if (code === "8") return "Праздник";
-  if (code === "7") return "Сокращённый день";
-  return code ? `День: ${code}` : "День";
-}
-
 function clean(value) {
   return String(value || "").trim();
-}
-
-function shortTask(value) {
-  const firstLine = clean(value).split(/\r?\n/).map((line) => line.trim()).find(Boolean);
-  if (!firstLine) return "Задача";
-  return firstLine.length > 80 ? `${firstLine.slice(0, 77)}...` : firstLine;
 }
 
 function compactDescription(employee, task) {
@@ -141,8 +127,14 @@ function compactDescription(employee, task) {
     .map((line) => line.trim())
     .filter(Boolean)
     .join("\n");
-  const value = `${employee}\n${normalized}`;
-  return value.length > 280 ? `${value.slice(0, 277)}...` : value;
+  return `${employee}:\n${normalized}`;
+}
+
+function eventSummary(tasks) {
+  const names = tasks.map((task) => task.employee);
+  const uniqueNames = [...new Set(names)];
+  const summary = `Задачи: ${uniqueNames.join(", ")}`;
+  return summary.length > 90 ? `${summary.slice(0, 87)}...` : summary;
 }
 
 function streamText(value) {
@@ -194,10 +186,8 @@ async function buildCalendar() {
       const day = Number(clean(row[0]));
       if (!day) continue;
 
-      const code = clean(row[1]);
       const start = formatDate(year, monthData.month, day);
       const end = nextDate(year, monthData.month, day);
-      const weekday = clean(row[2]);
       const tasks = [];
 
       for (let col = 4; col < employees.length; col += 1) {
@@ -205,19 +195,20 @@ async function buildCalendar() {
         const task = clean(row[col]);
         if (!employee || !task) continue;
 
-        tasks.push(compactDescription(employee, task));
+        tasks.push({ employee, text: task });
       }
 
-      const description = [
-        weekday ? `${day}.${String(monthData.month).padStart(2, "0")}.${year}, ${weekday}` : "",
-        ...tasks,
-      ].filter(Boolean).join("\n\n");
+      if (tasks.length === 0) continue;
+
+      const description = tasks
+        .map((task) => compactDescription(task.employee, task.text))
+        .join("\n\n");
 
       event(lines, {
         uid: `${start}-day`,
         start,
         end,
-        summary: dayStatusTitle(code),
+        summary: eventSummary(tasks),
         description,
       });
     }
