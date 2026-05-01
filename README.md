@@ -53,3 +53,14 @@ GitHub Actions запускается:
 python3 generate_ru_prod_calendar.py --update
 python3 validate_ics.py
 ```
+
+## Cloudflare Worker
+
+Если iPhone не принимает GitHub Pages, деплой отдельного Worker endpoint:
+
+```bash
+npx wrangler login
+npx wrangler deploy
+```
+
+После деплоя используйте URL Worker с путём `/calendar.ics`.
