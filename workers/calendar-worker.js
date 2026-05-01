@@ -20,14 +20,16 @@ export default {
       cf: { cacheEverything: true, cacheTtl: 600 },
     });
 
-    if (!upstream.ok || !upstream.body) {
+    if (!upstream.ok) {
       return new Response("Calendar temporarily unavailable", {
         status: 503,
         headers: { "Content-Type": "text/plain; charset=utf-8" },
       });
     }
 
-    return new Response(upstream.body, {
+    const calendar = await upstream.text();
+
+    return new Response(calendar, {
       status: 200,
       headers: {
         "Content-Type": "text/calendar; charset=utf-8",
