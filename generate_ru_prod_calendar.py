@@ -17,7 +17,7 @@ import subprocess
 import sys
 import uuid
 from dataclasses import dataclass
-from datetime import UTC, date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -198,7 +198,7 @@ def discover_government_pages(year: int) -> list[str]:
     found: list[str] = []
     for url in search_urls:
         try:
-            page = request_text(url, timeout=12)
+            page = request_text(url, timeout=5)
         except (OSError, subprocess.SubprocessError):
             continue
         for match in re.findall(r'href="(/docs/(?:all/)?\d+/)"', page):
@@ -294,9 +294,30 @@ def calculate_year(year: int, transfers: list[Transfer], source: list[str]) -> d
 
 
 def fetch_official_year(year: int, known_urls: list[str]) -> dict[str, Any] | None:
-    for url in [*known_urls, *discover_government_pages(year)]:
+    for url in known_urls:
         try:
-            page = request_text(url)
+            page = request_text(url, timeout=8)
+        except (OSError, subprocess.SubprocessError):
+            continue
+
+        text = html_to_text(page)
+        if f"переносе выходных дней в {year} году" not in text.lower():
+            continue
+
+        transfers = parse_transfers(text, year)
+        if not transfers:
+            continue
+
+        resolution = extract_resolution(text)
+        source = [
+            resolution or f"Официальная публикация Правительства РФ о переносе выходных дней в {year} году",
+            f"Официальная публикация Правительства РФ: {url}",
+        ]
+        return calculate_year(year, transfers, source)
+
+    for url in discover_government_pages(year):
+        try:
+            page = request_text(url, timeout=8)
         except (OSError, subprocess.SubprocessError):
             continue
 
@@ -361,7 +382,7 @@ def make_event(day: str, title: str, description: str, now: str) -> list[str]:
 
 def generate() -> None:
     data = load_data()
-    now = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    now = "19700101T000000Z"
 
     lines = [
         "BEGIN:VCALENDAR",
@@ -401,7 +422,7 @@ def generate() -> None:
 
 def default_update_years() -> list[int]:
     today = date.today()
-    return [today.year, today.year + 1, today.year + 2]
+    return [today.year, today.year + 1]
 
 
 def main() -> int:
