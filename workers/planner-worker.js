@@ -121,33 +121,31 @@ function clean(value) {
   return String(value || "").trim();
 }
 
-function compactDescription(employee, task) {
+function compactDescription(task) {
   const normalized = clean(task)
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean)
     .join("\n");
-  return `${employee}:\n${normalized}`;
+  return normalized;
 }
 
-function eventSummary(tasks) {
-  const names = tasks.map((task) => task.employee);
-  const uniqueNames = [...new Set(names)];
-  const summary = `Задачи: ${uniqueNames.join(", ")}`;
+function eventSummary(employee, task) {
+  const firstLine = clean(task)
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .find(Boolean);
+  const summary = firstLine ? `${employee}: ${firstLine}` : employee;
   return summary.length > 90 ? `${summary.slice(0, 87)}...` : summary;
 }
 
-function streamText(value) {
-  const encoder = new TextEncoder();
-  return new ReadableStream({
-    start(controller) {
-      const chunkSize = 8192;
-      for (let index = 0; index < value.length; index += chunkSize) {
-        controller.enqueue(encoder.encode(value.slice(index, index + chunkSize)));
-      }
-      controller.close();
-    },
-  });
+function calendarPath(requestUrl) {
+  const url = new URL(requestUrl);
+  try {
+    return decodeURIComponent(url.pathname).trim();
+  } catch {
+    return url.pathname.trim();
+  }
 }
 
 async function fetchMonth(sheet) {
@@ -188,29 +186,19 @@ async function buildCalendar() {
 
       const start = formatDate(year, monthData.month, day);
       const end = nextDate(year, monthData.month, day);
-      const tasks = [];
-
       for (let col = 4; col < employees.length; col += 1) {
         const employee = clean(employees[col]);
         const task = clean(row[col]);
         if (!employee || !task) continue;
 
-        tasks.push({ employee, text: task });
+        event(lines, {
+          uid: `${start}-${rowIndex}-${col}`,
+          start,
+          end,
+          summary: eventSummary(employee, task),
+          description: compactDescription(task),
+        });
       }
-
-      if (tasks.length === 0) continue;
-
-      const description = tasks
-        .map((task) => compactDescription(task.employee, task.text))
-        .join("\n\n");
-
-      event(lines, {
-        uid: `${start}-day`,
-        start,
-        end,
-        summary: eventSummary(tasks),
-        description,
-      });
     }
   }
 
@@ -220,8 +208,8 @@ async function buildCalendar() {
 
 export default {
   async fetch(request) {
-    const url = new URL(request.url);
-    if (url.pathname !== "/" && url.pathname !== "/calendar.ics") {
+    const path = calendarPath(request.url);
+    if (path !== "/" && path !== "/calendar.ics") {
       return new Response("Not found", {
         status: 404,
         headers: { "Content-Type": "text/plain; charset=utf-8" },
@@ -230,7 +218,7 @@ export default {
 
     try {
       const calendar = await buildCalendar();
-      return new Response(streamText(calendar), {
+      return new Response(calendar, {
         headers: {
           "Content-Type": "text/calendar; charset=utf-8",
           "Content-Disposition": 'inline; filename="planner26.ics"',
