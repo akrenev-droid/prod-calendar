@@ -26,7 +26,7 @@ from urllib.parse import quote
 DATA_FILE = Path("ru_prod_calendar_data.json")
 OUTPUT_FILE = Path("ru-production-calendar.ics")
 CALENDAR_NAME = "Производственный календарь РФ"
-UID_DOMAIN = "ru-prod-calendar.github.io"
+UID_DOMAIN = "prod-calendar"
 
 MONTHS = {
     "января": 1,
@@ -360,17 +360,16 @@ def refresh_data(years: list[int]) -> bool:
     return changed
 
 
-def make_event(day: str, title: str, description: str, now: str) -> list[str]:
+def make_event(day: str, title: str, now: str) -> list[str]:
     event_day = parse_iso_day(day)
     stable_id = uuid.uuid5(uuid.NAMESPACE_DNS, f"{day}:{title}")
     raw_lines = [
         "BEGIN:VEVENT",
-        f"UID:{day}-{stable_id}@{UID_DOMAIN}",
+        f"UID:{day}-{stable_id.hex[:12]}@{UID_DOMAIN}",
         f"DTSTAMP:{now}",
         f"DTSTART;VALUE=DATE:{date_to_ics(event_day)}",
         f"DTEND;VALUE=DATE:{next_day_to_ics(event_day)}",
         f"SUMMARY:{escape_ics_text(title)}",
-        f"DESCRIPTION:{escape_ics_text(description)}",
         "TRANSP:TRANSPARENT",
         "END:VEVENT",
     ]
@@ -380,9 +379,25 @@ def make_event(day: str, title: str, description: str, now: str) -> list[str]:
     return folded
 
 
+def event_title(kind: str, name: str) -> str:
+    if kind == "short":
+        return "Сокращённый день"
+    if name.lower().startswith("выходной: перенос"):
+        return "Выходной: перенос"
+    if name == "Международный женский день":
+        return "Выходной: 8 марта"
+    if name == "День защитника Отечества":
+        return "Выходной: 23 февраля"
+    if name == "Праздник Весны и Труда":
+        return "Выходной: 1 мая"
+    if name == "День народного единства":
+        return "Выходной: 4 ноября"
+    return f"Выходной: {name}"
+
+
 def generate() -> None:
     data = load_data()
-    now = "19700101T000000Z"
+    now = "20260101T000000Z"
 
     lines = [
         "BEGIN:VCALENDAR",
@@ -391,27 +406,24 @@ def generate() -> None:
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         f"X-WR-CALNAME:{escape_ics_text(CALENDAR_NAME)}",
+        f"NAME:{escape_ics_text(CALENDAR_NAME)}",
         "X-WR-TIMEZONE:Europe/Moscow",
         "REFRESH-INTERVAL;VALUE=DURATION:P1D",
         "X-PUBLISHED-TTL:PT24H",
     ]
 
     for year, year_data in sorted(data.items()):
-        source = "\n".join(year_data.get("source", []))
-
         for day, name in sorted(year_data.get("non_working_days", {}).items()):
             lines.extend(make_event(
                 day,
-                f"Выходной — {name}",
-                f"Нерабочий день по производственному календарю РФ.\n\nИсточник:\n{source}",
+                event_title("non_working", name),
                 now,
             ))
 
         for day, name in sorted(year_data.get("short_days", {}).items()):
             lines.extend(make_event(
                 day,
-                f"Сокращённый день — {name}",
-                f"Рабочий день сокращён на 1 час.\n\nИсточник:\n{source}",
+                event_title("short", name),
                 now,
             ))
 

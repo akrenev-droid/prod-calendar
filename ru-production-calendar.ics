@@ -4,341 +4,184 @@ PRODID:-//Personal RU Production Calendar//RU
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Производственный календарь РФ
+NAME:Производственный календарь РФ
 X-WR-TIMEZONE:Europe/Moscow
 REFRESH-INTERVAL;VALUE=DURATION:P1D
 X-PUBLISHED-TTL:PT24H
 BEGIN:VEVENT
-UID:2026-01-01-8815241a-fb36-51fd-96d4-bbf68e2c27f6@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-01-da4f6d153054@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260101
 DTEND;VALUE=DATE:20260102
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-02-50016e38-b1fb-55ba-8787-85b32bb9659b@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-02-666664c09ae8@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260102
 DTEND;VALUE=DATE:20260103
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-03-93382b82-126e-5f2d-914b-05f7c697dfb8@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-03-2af5b955cb3b@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260103
 DTEND;VALUE=DATE:20260104
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-04-4a9b4059-c9fd-556c-9b84-24081bc9a89d@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-04-6c81dae949ae@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260104
 DTEND;VALUE=DATE:20260105
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-05-b48b9cdc-b8b3-5ebd-b399-1c1b7ba2dc88@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-05-d4aef6d4581e@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260105
 DTEND;VALUE=DATE:20260106
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-06-1ac0bc0d-d87c-5cc1-99e7-a7dd6b5e6fab@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-06-9daea56661aa@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260106
 DTEND;VALUE=DATE:20260107
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-07-8316860f-c978-5b71-9a4e-ddc5a539db2f@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-07-0c26fb46d149@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260107
 DTEND;VALUE=DATE:20260108
-SUMMARY:Выходной — Рождество Христово
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Рождество Христово
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-08-adff9941-4f50-58fb-a745-ba0bf1dceb7d@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-08-c90bacbbfb45@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260108
 DTEND;VALUE=DATE:20260109
-SUMMARY:Выходной — Новогодние каникулы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: Новогодние каникулы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-01-09-4e5a33ac-8cb2-5972-8fc1-62ee12df7710@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-01-09-b1cadb423dbd@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260109
 DTEND;VALUE=DATE:20260110
-SUMMARY:Выходной — Выходной: перенос с 3 янва
- ря
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: перенос
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-02-23-42c21e2a-6602-5117-bbc3-631013f80773@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-02-23-8cf8c589441c@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260223
 DTEND;VALUE=DATE:20260224
-SUMMARY:Выходной — День защитника Отечества
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: 23 февраля
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-03-08-c711b7d9-3d02-5007-b195-4ecbc752bbae@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-03-08-e0d823286ca2@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260308
 DTEND;VALUE=DATE:20260309
-SUMMARY:Выходной — Международный женский де
- нь
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: 8 марта
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-03-09-c12d95c7-c304-5c75-9199-b20dbbeedcec@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-03-09-1fa8edd33f62@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260309
 DTEND;VALUE=DATE:20260310
-SUMMARY:Выходной — Выходной: перенос с 8 март
- а
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: перенос
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-05-01-aacd750d-9641-531b-b22c-dd2b4ecfab36@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-05-01-69d2da44d05d@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260501
 DTEND;VALUE=DATE:20260502
-SUMMARY:Выходной — Праздник Весны и Труда
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: 1 мая
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-05-09-62021d6e-2db5-59cb-8e66-6c5dbe74be92@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-05-09-6fe432011e9c@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260509
 DTEND;VALUE=DATE:20260510
-SUMMARY:Выходной — День Победы
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: День Победы
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-05-11-fbd82395-dcf7-52fc-8b23-6aeb1cab09a4@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-05-11-db767258ccf0@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260511
 DTEND;VALUE=DATE:20260512
-SUMMARY:Выходной — Выходной: перенос с 9 мая
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: перенос
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-06-12-9104e163-0fc6-56d1-9b3d-5d6d6d9ab24a@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-06-12-d41b4b195114@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260612
 DTEND;VALUE=DATE:20260613
-SUMMARY:Выходной — День России
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: День России
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-11-04-9fd7efa5-ca21-5cb1-b9ae-a589a503eff9@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-11-04-ff2da199e4dd@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261104
 DTEND;VALUE=DATE:20261105
-SUMMARY:Выходной — День народного единства
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: 4 ноября
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-12-31-7d420598-df92-5f8d-9baa-785fc07a8156@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-12-31-b75e725a453a@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
-SUMMARY:Выходной — Выходной: перенос с 4 янва
- ря
-DESCRIPTION:Нерабочий день по производственно
- му календарю РФ.\n\nИсточник:\nПостановлен
- ие Правительства РФ от 24.09.2025 №1466 «О пере
- носе выходных дней в 2026 году»\nОфициальн
- ая публикация Правительства РФ: https://governm
- ent.ru/docs/56309/
+SUMMARY:Выходной: перенос
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-04-30-ce8bf39a-3252-59a9-a47a-e2f43c14b56e@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-04-30-f81db27bd9ae@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260430
 DTEND;VALUE=DATE:20260501
-SUMMARY:Сокращённый день — Сокращённый рабо
- чий день перед 1 мая
-DESCRIPTION:Рабочий день сокращён на 1 час.\n\nИс
- точник:\nПостановление Правительства РФ 
- от 24.09.2025 №1466 «О переносе выходных дней в
-  2026 году»\nОфициальная публикация Правит
- ельства РФ: https://government.ru/docs/56309/
+SUMMARY:Сокращённый день
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-05-08-34b30f84-9ff8-5258-a7d6-472da47f80be@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-05-08-d4767164899d@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260509
-SUMMARY:Сокращённый день — Сокращённый рабо
- чий день перед 9 мая
-DESCRIPTION:Рабочий день сокращён на 1 час.\n\nИс
- точник:\nПостановление Правительства РФ 
- от 24.09.2025 №1466 «О переносе выходных дней в
-  2026 году»\nОфициальная публикация Правит
- ельства РФ: https://government.ru/docs/56309/
+SUMMARY:Сокращённый день
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-06-11-d51c4075-6011-5337-a3f7-67f3a2f37b58@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-06-11-138c5abbc61e@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260611
 DTEND;VALUE=DATE:20260612
-SUMMARY:Сокращённый день — Сокращённый рабо
- чий день перед 12 июня
-DESCRIPTION:Рабочий день сокращён на 1 час.\n\nИс
- точник:\nПостановление Правительства РФ 
- от 24.09.2025 №1466 «О переносе выходных дней в
-  2026 году»\nОфициальная публикация Правит
- ельства РФ: https://government.ru/docs/56309/
+SUMMARY:Сокращённый день
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-11-03-bf35cbcb-1781-5e4b-92a1-1c4c38769f06@ru-prod-calendar.github
- .io
-DTSTAMP:19700101T000000Z
+UID:2026-11-03-060f7c6128dd@prod-calendar
+DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
-SUMMARY:Сокращённый день — Сокращённый рабо
- чий день перед 4 ноября
-DESCRIPTION:Рабочий день сокращён на 1 час.\n\nИс
- точник:\nПостановление Правительства РФ 
- от 24.09.2025 №1466 «О переносе выходных дней в
-  2026 году»\nОфициальная публикация Правит
- ельства РФ: https://government.ru/docs/56309/
+SUMMARY:Сокращённый день
 TRANSP:TRANSPARENT
 END:VEVENT
 END:VCALENDAR
