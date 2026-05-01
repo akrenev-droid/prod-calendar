@@ -62,3 +62,9 @@ npx wrangler deploy
 ```text
 https://ru-prod-calendar.a-krenev.workers.dev/calendar.ics
 ```
+
+Рабочий календарь из Google Sheets `planner26`:
+
+```text
+https://planner26-calendar.a-krenev.workers.dev/calendar.ics
+```
